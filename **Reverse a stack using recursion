@@ -1,0 +1,24 @@
+void insertt(stack<int>& stack,int element){
+    //base case
+    //at the bottom pushed
+    if(stack.empty()){
+        stack.push(element);
+        return;
+    }
+    int peek = stack.top();
+    stack.pop();
+    insertt(stack,element);
+    stack.push(peek);
+}
+
+void reverseStack(stack<int> &stack) { 
+    //base case
+    //for better understanding SEE LOVE BABBAR's DSA lec 55
+    if(stack.empty()){
+        return;
+    }
+    int element_to_be_pushed_in_the_bottom = stack.top();
+    stack.pop();
+    reverseStack(stack);
+    insertt(stack,element_to_be_pushed_in_the_bottom);
+}
