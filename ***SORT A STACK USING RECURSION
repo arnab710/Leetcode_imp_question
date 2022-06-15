@@ -1,0 +1,29 @@
+void sortt(stack<int> & stack, int element){
+    if(stack.empty()){
+        stack.push(element);
+        return;
+    }
+    int peek = stack.top();
+    //SEE THE CONDITIONS YOU WILL UNDERSTAND 
+    if(peek<element){
+       stack.push(element);
+        return;
+    }
+    else{
+        stack.pop();
+        sortt(stack,element);
+        stack.push(peek);
+    }
+}
+
+void sortStack(stack<int> &stack)
+{    
+	if(stack.empty()){
+    return;
+    }
+    
+    int element = stack.top();
+    stack.pop();
+    sortStack(stack); //THIS FXN IS CALLED FOR TAKE ALL THE ELEMENT OUT AND EMPTYING THE STACK
+    sortt(stack,element);//THIS FXN IS CALLED FOR ACTUAL SORTING
+}
