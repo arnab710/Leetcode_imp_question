@@ -1,0 +1,18 @@
+void pro(stack<int>& myStack, int x){
+     if(myStack.empty()){
+        myStack.push(x);
+        return ;
+    }
+    
+    
+    int peek = myStack.top();
+      myStack.pop();
+    pro(myStack,x);
+    myStack.push(peek);
+}
+
+stack<int> pushAtBottom(stack<int>& myStack, int x) 
+{
+   pro(myStack,x);
+    return myStack;
+}
