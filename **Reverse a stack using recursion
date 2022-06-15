@@ -20,5 +20,5 @@ void reverseStack(stack<int> &stack) {
     int element_to_be_pushed_in_the_bottom = stack.top();
     stack.pop();
     reverseStack(stack);
-    insertt(stack,element_to_be_pushed_in_the_bottom);
+    insertt(stack,element_to_be_pushed_in_the_bottom);  //THIS FXN IS CALLED TO PUSH EVERY PEEK ELEMENT AT THE BOTTOM . THUS REVERSING ARRAY WILL BE ACHIEVED.
 }
