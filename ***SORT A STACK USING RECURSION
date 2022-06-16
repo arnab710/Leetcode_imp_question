@@ -12,8 +12,9 @@ void sortt(stack<int> & stack, int element){
     else{
         stack.pop();
         sortt(stack,element);
-        stack.push(peek);
+        
     }
+    stack.push(peek); // VALUES ADDED AFTER SORTING  
 }
 
 void sortStack(stack<int> &stack)
