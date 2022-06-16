@@ -1,0 +1,20 @@
+#include<bits/stdc++.h>
+class Solution {
+public:
+    int maxDepth(string s) {
+        
+        int n = s.length();
+        stack<char> stack;
+        int maxi = 0;
+        
+        for(int i=0;i<n;i++){
+            if(s[i]=='(') stack.push(s[i]);
+                else if (s[i]==')'){
+                    int size = stack.size();
+                    maxi = max(maxi,size);
+                    stack.pop();
+                }}
+        return maxi;
+        
+    }
+};
