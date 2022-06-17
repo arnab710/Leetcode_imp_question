@@ -1,0 +1,28 @@
+#include<stack>
+vector<int> nextSmallerElement(vector<int> &arr, int n)
+{
+    stack<int> stack;
+     vector<int>ans(n);
+    stack.push(-1); // initially -1 is pushed
+    
+    for(int i=n-1;i>=0;i--){  //last theke iterate korchi.. jodi less pacchi then direct r na hole pop() kore kore less khuje ANS vector e dokachi....  
+                              // ekhn question uthte paare pop() korle element gulo chole jbe aager comparison gulo korbo ki kore ,, ans is think logically there is no need
+        if(arr[i]>stack.top()){
+            int e = stack.top();
+            stack.push(arr[i]);
+            ans[i]= e;
+        }
+        else{
+            while(arr[i]<=stack.top()){
+                stack.pop();
+            }
+            int ele = stack.top();
+            stack.push(arr[i]);
+            ans[i] = ele;
+        }
+        
+    }
+     return ans;
+   
+    
+}
