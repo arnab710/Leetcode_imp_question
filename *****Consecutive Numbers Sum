@@ -1,0 +1,82 @@
+                                                         //bruteForce Solution
+class Solution {
+public:
+    int consecutiveNumbersSum(int n) {
+        
+        vector<int> numbers;
+        
+        for(int i=0;i<=n;i++){
+            
+            numbers.push_back(i);
+        }
+        
+        int i = 0;
+        int j = 0;
+        int sum = 0;
+        int c = 0;
+        int upto = ((n+1)/2)+1;
+        if(upto>n){
+            
+            return 1;
+        }
+        
+        
+        while(i<=upto){
+            
+            
+            if(sum<n){
+                sum += numbers[i];
+                i++;
+            }
+            else if(sum>n){
+                
+                sum -= numbers[j];
+                j++;
+            }
+            if(sum==n){
+                c++;
+                if(i<=upto){
+                sum+= numbers[i];
+                i++;
+                
+            }}
+        }
+        c++;
+        return c;
+    }
+};
+
+
+
+
+
+
+
+
+                                                                      //optimal solution
+                                                                      
+class Solution {
+public:
+    int consecutiveNumbersSum(int n) {
+        
+                                   //sob size count er khela
+        int count = 0;
+        
+        for(int size=2;(size*(size+1)/2)<=n;size++){
+            
+            int diff = n - (size*(size+1)/2);
+            int rem = (diff % size);
+            
+            if(rem==0){
+                count ++;          //T.C = Sqrt(n)
+            }
+        }
+        
+        count++;
+        return count;
+    }
+};
+
+
+
+
