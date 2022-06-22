@@ -1,0 +1,123 @@
+class Solution {
+
+// PRIVATE ACCESS E PURO J FUNCTION TA ACHE SETA HISTOGRAM RECTANGLE AREA CONCEPT FULLY
+    private:
+    int maxrec(vector<int> &ar){
+        
+         int size = ar.size();
+        
+    
+        stack <int> st;
+        vector<int> left;
+        
+        for(int i=0;i<size;i++){
+                    
+            
+            while(!st.empty() and (ar[st.top()]>=ar[i])){
+                
+                st.pop();
+            }
+            if(st.empty()){
+                
+                left.push_back(0);
+                st.push(i);
+            }
+            else{
+                int limit = st.top();
+                    left.push_back(limit+1);
+                    st.push(i);
+            }
+        }
+        while(!st.empty()){
+            st.pop();
+        }
+        vector<int> right(size);
+        int area = 0;
+       int max_area = 0;
+        for(int i=(size-1);i>=0;i--){
+            
+            
+            while(!st.empty() and ar[st.top()]>=ar[i]){
+                
+                st.pop();
+            }
+            if(st.empty()){
+                
+                right[i] = (size-1);
+                st.push(i);
+            }
+            else{
+                int limit = st.top();
+                right[i] = (limit-1);
+                st.push(i);
+            }
+            
+            area = ((right[i] - left[i]+1)* ar[i]);
+            
+           max_area = max(area,max_area);
+        }
+        
+        
+        return max_area;
+        
+    } 
+    public:
+    int maximalRectangle(vector<vector<char>>& matrix) {
+        
+        //CONVERTING CHAR INTO INT
+        
+        vector<vector<int>> mat;
+        for(int i=0;i<matrix.size();i++){
+            
+            vector<int> temp;
+            
+            for(int j=0;j<matrix[i].size();j++){
+                
+                int a = matrix[i][j] -'0';
+                temp.push_back(a);
+            }
+                mat.push_back(temp);
+        }
+        
+        
+        
+        
+        int max_area = 0;
+        int area;
+        for(int i=0;i<mat.size();i++){
+            
+            for(int j=0;j<mat[i].size();j++){
+                
+                if(i==0){ //for starting row case
+                    
+                     area = maxrec(mat[0]);
+                    break;
+                }
+                
+                else{
+                    
+                    if(mat[i][j]==1){
+                        
+                        mat[i][j] += mat[i-1][j];
+                    }
+                    else{
+                        mat[i][j] = 0;
+                    }
+                    
+                     
+                }}
+            
+            if(i==0){
+                
+                max_area = max(area, max_area);
+            }
+            
+            else{
+
+            area = maxrec(mat[i]);
+                max_area = max(area, max_area);
+            }}
+        
+        return max_area;
+    }
+};
