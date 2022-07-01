@@ -1,0 +1,26 @@
+class Solution {
+    private: //ITS MEDIAN'S GAME
+    
+    int count(int median, vector<int>& nums, int size){
+        
+        int count = 0;
+        
+        for(int i=0;i<size;i++)
+        {
+            count += abs(nums[i]- median);  //FOR MODULAS FXN
+    }
+    
+    return count;
+    }
+    
+public:
+    int minMoves2(vector<int>& nums) {
+        
+        sort(nums.begin(), nums.end());
+        int size = nums.size();
+        
+        int median = nums[size/2];
+        
+        return count(median, nums, size);
+    }
+};
