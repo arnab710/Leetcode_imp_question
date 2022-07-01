@@ -1,0 +1,45 @@
+class Solution {
+    
+    private:
+    
+    void solver(vector<int> &arr, int amount,long long int sum,int size,vector<int> &temp,int n,int &min_value){
+        
+        //base case
+        if(n==size){
+            if(sum==amount){
+                int p = temp.size();
+          min_value = min(min_value,p);}
+            return ;
+        }
+        if(sum==amount){
+            int p = temp.size();
+            min_value = min(min_value,p);
+            return ;
+        }  
+        if(sum>amount) return;
+        
+        //take case
+        sum += arr[n];
+        temp.push_back(arr[n]);
+        solver(arr,amount,sum,size,temp,n,min_value);
+        temp.pop_back();
+        sum -= arr[n];
+        //not take case;
+       solver(arr,amount,sum,size,temp,n+1,min_value);
+        
+    }
+    
+public:
+    int coinChange(vector<int>& coins, int amount) {
+        
+        int size = coins.size();
+        long long int sum = 0, n=0;
+        int min_value = INT_MAX;
+        vector<int> temp;
+        vector<int>dp(size+1,-1);
+           solver(coins,amount,sum,size,temp,n,min_value); 
+        
+        if(min_value==INT_MAX) return -1;
+        return min_value;
+    }
+};
