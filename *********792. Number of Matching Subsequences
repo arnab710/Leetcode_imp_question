@@ -1,0 +1,44 @@
+class Solution {
+public:
+    int numMatchingSubseq(string s, vector<string>& words) {
+        
+        map<char,vector<int>>mapp;
+        int count = 0;
+        bool c = true;
+        int i= 0;
+        for(auto &x: s){     //creating a map
+        mapp[x].push_back(i);
+            i++;
+        }
+        
+        int size = words.size();
+        for(int i=0;i<size;i++){
+            
+            int index = -1;
+            
+            string curr = words[i];
+            
+            for(auto &j:curr){
+                
+                auto it = upper_bound(mapp[j].begin(),mapp[j].end(),index);
+                
+                if(it==mapp[j].end()){
+                    c = false;
+                    break;
+                }
+                else{
+                    index = *it;
+                }
+            }
+            if(c==true){
+                    count++;
+            }
+            else{
+                c=true;
+            }
+            
+        }
+        
+        return count;
+    }
+};
